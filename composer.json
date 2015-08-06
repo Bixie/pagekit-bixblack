@@ -1,0 +1,18 @@
+{
+    "name": "pagekit/bixblack",
+    "type": "pagekit-theme",
+    "version": "0.1.0",
+    "title": "BixBlack",
+    "description": "First dark black theme for Pagekit",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bixie",
+            "email": "admin@bixie.nl",
+            "homepage": "http://www.bixie.nl"
+        }
+    ],
+    "extra": {
+        "image": "theme.jpg"
+    }
+}
