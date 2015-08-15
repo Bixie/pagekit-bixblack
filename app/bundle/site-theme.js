@@ -62,19 +62,29 @@
 	        section: {
 	            label: 'Theme',
 	            icon: 'pk-icon-large-brush',
-	            priority: 30
+	            priority: 15
 	        },
 
 	        data: function () {
 	            return window.$theme;
 	        },
 
+	        filters: {
+	            themeStyles: function (value) {
+	                var vm = this;
+	                return value.map(function (style) {
+	                    return {value: style, text: vm.$trans(_.startCase(style))}
+	                });
+	            }
+	        },
+
 	        methods: {
+
 
 	            save: function(e) {
 	                e.preventDefault();
 
-	                var config = _.omit(this.config, ['positions', 'menus', 'widget']);
+	                var config = _.omit(this.config, ['positions', 'menus', 'widget', 'styles']);
 
 	                this.$http.post('admin/system/settings/config', {name: this.name, config: config}, function () {
 	                    UIkit.notify(this.$trans('Settings saved.'), '');
@@ -94,7 +104,7 @@
 /* 7 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-margin uk-flex uk-flex-space-between uk-flex-wrap\" data-uk-margin>\n        <div data-uk-margin>\n            <h2 class=\"uk-margin-remove\">{{ 'Theme' | trans }}</h2>\n        </div>\n        <div data-uk-margin>\n            <button class=\"uk-button uk-button-primary\" v-on=\"click: save\">{{ 'Save' | trans }}</button>\n        </div>\n    </div>\n\n    <div class=\"uk-form uk-form-horizontal\">\n\n        <div class=\"uk-form-row\">\n            <label class=\"uk-form-label\">{{ 'Logo Contrast' | trans }}</label>\n            <div class=\"uk-form-controls uk-form-width-large\">\n                <input-image source=\"{{@ config['logo-contrast'] }}\"></input-image>\n                <p class=\"uk-form-help-block\">{{ 'Select an alternative logo which looks great on images.' | trans }}</p>\n            </div>\n        </div>\n\n    </div>";
+	module.exports = "<div class=\"uk-margin uk-flex uk-flex-space-between uk-flex-wrap\" data-uk-margin>\n        <div data-uk-margin>\n            <h2 class=\"uk-margin-remove\">{{ 'Theme' | trans }}</h2>\n        </div>\n        <div data-uk-margin>\n            <button class=\"uk-button uk-button-primary\" v-on=\"click: save\">{{ 'Save' | trans }}</button>\n        </div>\n    </div>\n\n    <div class=\"uk-form uk-form-horizontal\">\n\n        <div class=\"uk-form-row\">\n            <label class=\"uk-form-label\">{{ 'Style' | trans }}</label>\n            <div class=\"uk-form-controls\">\n                <select class=\"uk-form-width-large\" v-model=\"config.style\" options=\"options.styles | themeStyles\"></select>\n            </div>\n        </div>\n\n    </div>";
 
 /***/ }
 /******/ ]);

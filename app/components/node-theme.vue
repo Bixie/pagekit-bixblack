@@ -61,6 +61,6 @@
 
     };
 
-    window.Site.components['appearance'] = module.exports;
+    window.Site.components['node-theme'] = module.exports;
 
 </script>

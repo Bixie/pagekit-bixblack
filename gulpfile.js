@@ -28,12 +28,13 @@ gulp.task('default', ['compile']);
  */
 gulp.task('compile', function () {
 
-    return merge.apply(null, gulp.src('./less/*.less', {base: './'})
+    return merge.apply(null, gulp.src(['./less/style.less', './styles/*/style.less'], {base: './'})
         .pipe(less({compress: true, relativeUrls: true}))
         .pipe(header(banner, {data: require('./composer.json')}))
         .pipe(rename(function (file) {
-            // the compiled less file should be stored in the css/ folder instead of the less/ folder
-            file.dirname = file.dirname.replace('less', 'css');
+            file.basename = 'theme.' + (file.dirname.indexOf('styles') === 0 ? file.dirname.replace('styles\\', '') : 'default');
+            file.dirname = 'css';
+            console.log(file.basename);
         }))
         .pipe(gulp.dest('./'))
         );

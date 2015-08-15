@@ -12,10 +12,9 @@
     <div class="uk-form uk-form-horizontal">
 
         <div class="uk-form-row">
-            <label class="uk-form-label">{{ 'Logo Contrast' | trans }}</label>
-            <div class="uk-form-controls uk-form-width-large">
-                <input-image source="{{@ config['logo-contrast'] }}"></input-image>
-                <p class="uk-form-help-block">{{ 'Select an alternative logo which looks great on images.' | trans }}</p>
+            <label class="uk-form-label">{{ 'Style' | trans }}</label>
+            <div class="uk-form-controls">
+                <select class="uk-form-width-large" v-model="config.style" options="options.styles | themeStyles"></select>
             </div>
         </div>
 
@@ -30,19 +29,29 @@
         section: {
             label: 'Theme',
             icon: 'pk-icon-large-brush',
-            priority: 30
+            priority: 15
         },
 
         data: function () {
             return window.$theme;
         },
 
+        filters: {
+            themeStyles: function (value) {
+                var vm = this;
+                return value.map(function (style) {
+                    return {value: style, text: vm.$trans(_.startCase(style))}
+                });
+            }
+        },
+
         methods: {
+
 
             save: function(e) {
                 e.preventDefault();
 
-                var config = _.omit(this.config, ['positions', 'menus', 'widget']);
+                var config = _.omit(this.config, ['positions', 'menus', 'widget', 'styles']);
 
                 this.$http.post('admin/system/settings/config', {name: this.name, config: config}, function () {
                     UIkit.notify(this.$trans('Settings saved.'), '');

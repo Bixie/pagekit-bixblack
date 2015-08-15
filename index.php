@@ -78,7 +78,7 @@ return [
      */
     'config' => [
 
-        'logo-contrast' => '',
+        'style' => 'default',
 
     ],
 
@@ -89,15 +89,20 @@ return [
 
         'view.system/site/admin/settings' => function ($event, $view) use ($app) {
             $view->script('site-theme', 'theme:app/bundle/site-theme.js', 'site-settings');
+			$paths = glob($app->locator()->get('theme:styles') . '/*/style.less', GLOB_NOSORT) ?: [];
+			$this->options['styles'] = ['default'];
+			foreach ($paths as $p) {
+				$this->options['styles'][] = basename(dirname($p));
+			}
             $view->data('$theme', $this);
         },
 
         'view.system/site/admin/edit' => function ($event, $view) {
-            $view->script('site-appearance', 'theme:app/bundle/site-appearance.js', 'site-edit');
+            $view->script('node-theme', 'theme:app/bundle/node-theme.js', 'site-edit');
         },
 
         'view.system/widget/edit' => function ($event, $view) {
-            $view->script('widget-appearance', 'theme:app/bundle/widget-appearance.js', 'widget-edit');
+            $view->script('widget-theme', 'theme:app/bundle/widget-theme.js', 'widget-edit');
         },
 
         /**
