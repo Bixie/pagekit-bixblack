@@ -8,6 +8,7 @@
 
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
+    _ = require('lodash'),
     ftp = require('vinyl-ftp'),
     header = require('gulp-header'),
     less = require('gulp-less'),
@@ -22,10 +23,10 @@ var config = {
         data: 'composer.json'
     },
     ftp: {
-        host:     'ftp.bixie.nl',
-        user:     '***',
-        password: '***',
-        root:     'public/sites/themes.bixie.nl',
+        host:     'localhost',
+        user:     'root',
+        password: '',
+        root:     'var/www',
         parallel: 5,
         log:      gutil.log
     }
@@ -51,7 +52,7 @@ gulp.task('compile', function () {
 
 gulp.task('deploy', ['compile'], function () {
 
-    var conn = ftp.create(config.ftp),
+    var conn = ftp.create(_.extend(config.ftp, require('./remote.json'))),
         globs = [
             'css/**',
             'app/bundle/**'
