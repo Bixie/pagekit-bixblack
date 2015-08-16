@@ -6,8 +6,16 @@ return [
 
     'type' => 'theme',
 
-    /**
-     * Resources
+	'main' => 'Pagekit\\Bixie\\BixieBlackTheme',
+
+	'autoload' => [
+
+		'Pagekit\\Bixie\\' => 'src'
+
+	],
+
+	/**
+     * Resourcessda
      */
     'resources' => [
 
@@ -45,11 +53,11 @@ return [
      */
     'node' => [
 
+		'style' => '',
         'title_hide' => false,
         'html_class' => '',
-        'alignment' => '',
-        'sidebar-first' => false,
-        'hero-image' => '',
+		'fixed_menu' => false,
+		'hero-image' => '',
         'hero-contrast' => '',
         'navbar-transparent' => '',
 
@@ -78,22 +86,52 @@ return [
      */
     'config' => [
 
-        'style' => 'default',
+        'default_style' => 'default',
+        'fixed_menu' => false
 
     ],
 
     /**
+     * Styles defaults
+     */
+    'styles' => [
+
+        'default' => [
+			'data' => [
+				'scheme' => 'default',
+				'fixed_menu' => 1
+			]
+		],
+        'gold' => [
+			'data' => [
+				'scheme' => 'gold',
+				'fixed_menu' => 0
+			]
+		]
+
+    ],
+
+	'routes' => [
+
+		'/api/bixie' => [
+			'name' => '@bixie/api',
+			'controller' => [
+				'Pagekit\\Bixie\\Controller\\BixieApiController',
+			]
+		]
+
+	],
+
+	/**
      * Events
      */
     'events' => [
 
         'view.system/site/admin/settings' => function ($event, $view) use ($app) {
             $view->script('site-theme', 'theme:app/bundle/site-theme.js', 'site-settings');
-			$paths = glob($app->locator()->get('theme:styles') . '/*/style.less', GLOB_NOSORT) ?: [];
-			$this->options['styles'] = ['default'];
-			foreach ($paths as $p) {
-				$this->options['styles'][] = basename(dirname($p));
-			}
+            $view->data('$bixie', [
+				'styles' => $this->getStyles()
+			]);
             $view->data('$theme', $this);
         },
 
@@ -115,8 +153,7 @@ return [
             }
 
             $classes = [
-                'navbar' => 'tm-navbar',
-                'hero' => 'tm-block-height'
+                'navbar' => 'tm-navbar'
             ];
 
             $sticky = [
@@ -125,35 +162,11 @@ return [
                 'animation' => 'uk-animation-slide-top'
             ];
 
-            $event['logo-navbar'] = $event['logo'];
+			if (empty($event['style'])) {
+				$event['style'] = $event['default_style'];
+			}
 
-            // Sticky overlay navbar if hero position exists
-            if ($event['navbar-transparent'] && $view->position()->exists('hero') && $event['hero-image']) {
-
-                $sticky['top'] = '.uk-sticky-placeholder + *';
-                $classes['navbar'] .= ' tm-navbar-overlay tm-navbar-transparent';
-                $classes['hero'] = 'uk-height-viewport';
-
-                if ($event['hero-contrast']) {
-
-                    $sticky['clsinactive'] = 'tm-navbar-transparent tm-navbar-contrast';
-                    $classes['navbar'] .= ' tm-navbar-contrast';
-
-                    if (isset($event['logo-contrast'])) {
-                        $event['logo-navbar'] = $event['logo-contrast'];
-                    }
-
-                } else {
-                    $sticky['clsinactive'] = 'tm-navbar-transparent';
-                }
-
-            }
-
-            if ($event['hero-contrast'] && $event['hero-image']) {
-                $classes['hero'] .= ' uk-contrast';
-            }
-
-            $classes['sticky'] = 'data-uk-sticky=\''.json_encode($sticky).'\'';
+            $classes['sticky'] = $event['fixed_menu'] ? 'data-uk-sticky=\''.json_encode($sticky).'\'' : '';
 
             $event->addParameters(['classes' => $classes]);
 

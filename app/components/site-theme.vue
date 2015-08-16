@@ -12,11 +12,19 @@
     <div class="uk-form uk-form-horizontal">
 
         <div class="uk-form-row">
-            <label class="uk-form-label">{{ 'Style' | trans }}</label>
+            <label class="uk-form-label">{{ 'Default style' | trans }}</label>
             <div class="uk-form-controls">
-                <select class="uk-form-width-large" v-model="config.style" options="options.styles | themeStyles"></select>
+                <select class="uk-form-width-large" v-model="config.default_style" options="styles | themeStyles"></select>
             </div>
         </div>
+
+        <div class="uk-form-row">
+            <span class="uk-form-label">{{ 'Menubar' | trans }}</span>
+            <div class="uk-form-controls uk-form-controls-text">
+                <label><input type="checkbox" value="fixed-menu" v-model="config.fixed_menu"> {{ 'Fixed menu' | trans }}</label>
+            </div>
+        </div>
+
 
     </div>
 
@@ -33,25 +41,17 @@
         },
 
         data: function () {
-            return window.$theme;
+            return _.merge(window.$theme, window.$bixie);
         },
 
-        filters: {
-            themeStyles: function (value) {
-                var vm = this;
-                return value.map(function (style) {
-                    return {value: style, text: vm.$trans(_.startCase(style))}
-                });
-            }
-        },
+        filters: require('../lib/filters'),
 
         methods: {
-
 
             save: function(e) {
                 e.preventDefault();
 
-                var config = _.omit(this.config, ['positions', 'menus', 'widget', 'styles']);
+                var config = _.omit(this.config, ['positions', 'menus', 'widget']);
 
                 this.$http.post('admin/system/settings/config', {name: this.name, config: config}, function () {
                     UIkit.notify(this.$trans('Settings saved.'), '');

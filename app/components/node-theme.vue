@@ -2,6 +2,13 @@
 
     <div class="uk-form-horizontal">
 
+        <div class="uk-form-row">
+            <label class="uk-form-label">{{ 'Style' | trans }}</label>
+            <div class="uk-form-controls">
+                <select class="uk-form-width-large" v-model="node.theme.style" options="styles | themeStyles true"></select>
+            </div>
+        </div>
+
         <div class="uk-form-row" v-if="node.type === 'page'">
             <span class="uk-form-label">{{ 'Title' | trans }}</span>
             <div class="uk-form-controls uk-form-controls-text">
@@ -17,16 +24,9 @@
         </div>
 
         <div class="uk-form-row">
-            <span class="uk-form-label">{{ 'Alignment' | trans }}</span>
+            <span class="uk-form-label">{{ 'Menubar' | trans }}</span>
             <div class="uk-form-controls uk-form-controls-text">
-                <label><input type="checkbox" value="center-content" v-model="node.theme.alignment"> {{ 'Center the title and content.' | trans }}</label>
-            </div>
-        </div>
-
-        <div class="uk-form-row">
-            <span class="uk-form-label">{{ 'Sidebar' | trans }}</span>
-            <div class="uk-form-controls uk-form-controls-text">
-                <label><input type="checkbox" v-model="node.theme['sidebar-first']"> {{ 'Show the sidebar before the content.' | trans }}</label>
+                <label><input type="checkbox" value="fixed-menu" v-model="node.theme.fixed_menu"> {{ 'Fixed menu' | trans }}</label>
             </div>
         </div>
 
@@ -57,7 +57,16 @@
             priority: 90
         },
 
-        props: ['node']
+        props: ['node'],
+
+        created: function () {
+            this.Bixie = this.$resource('api/bixie/:task');
+            this.Bixie.query({task: 'styles'}, function (data) {
+                this.$set('styles', data);
+            })
+        },
+
+        filters: require('../lib/filters')
 
     };
 
