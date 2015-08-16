@@ -6,44 +6,70 @@
  * lint: runs jshint on all .js files
  */
 
-var merge = require('merge-stream'),
-    gulp = require('gulp'),
+var gulp = require('gulp'),
+    gutil = require('gulp-util'),
+    ftp = require('vinyl-ftp'),
     header = require('gulp-header'),
     less = require('gulp-less'),
     rename = require('gulp-rename'),
     eslint = require('gulp-eslint');
 
 // paths of the packages for the compile-task
-var pkgs = [
-    {path: 'themes/bixblack/', data: 'composer.json'}
-];
+var config = {
+    pkg: {
+        name: 'bixblack',
+        path: 'themes/bixblack',
+        data: 'composer.json'
+    },
+    ftp: {
+        host:     'ftp.bixie.nl',
+        user:     '***',
+        password: '***',
+        root:     'public/sites/themes.bixie.nl',
+        parallel: 5,
+        log:      gutil.log
+    }
+};
 
 // banner for the css files
 var banner = "/*! <%= data.title %> <%= data.version %> | (c) 2015 Pagekit/Bixie | MIT License */\n";
 
 gulp.task('default', ['compile']);
 
-/**
- * Compile all less files
- */
 gulp.task('compile', function () {
 
-    return merge.apply(null, gulp.src(['./less/style.less', './styles/*/style.less'], {base: './'})
+    return gulp.src(['./less/style.less', './styles/*/style.less'], {base: './'})
         .pipe(less({compress: true, relativeUrls: true}))
         .pipe(header(banner, {data: require('./composer.json')}))
         .pipe(rename(function (file) {
             file.basename = 'theme.' + (file.dirname.indexOf('styles') === 0 ? file.dirname.replace('styles\\', '') : 'default');
             file.dirname = 'css';
-            console.log(file.basename);
+            gutil.log('Compiling', gutil.colors.magenta(file.basename));
         }))
-        .pipe(gulp.dest('./'))
-        );
+        .pipe(gulp.dest('./'));
+});
+
+gulp.task('deploy', ['compile'], function () {
+
+    var conn = ftp.create(config.ftp),
+        globs = [
+            'css/**',
+            'app/bundle/**'
+        ];
+
+    // using base = '.' will transfer everything to /public_html correctly
+    // turn off buffering in gulp.src for best performance
+
+    return gulp.src(globs, { base: '.', buffer: false })
+        .pipe(conn.newer(config.pkg.path)) // only upload newer files
+        .pipe(conn.dest(config.ftp.root + '/' + config.pkg.path));
 
 });
 
-/**
- * Watch for changes in files
- */
 gulp.task('watch', function () {
     gulp.watch('**/*.less', ['compile']);
+});
+
+gulp.task('watchDeploy', function () {
+    gulp.watch('**/*.less', ['deploy']);
 });
