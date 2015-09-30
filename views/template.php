@@ -11,20 +11,36 @@
     </head>
     <body>
 
-        <?php if ($view->position()->exists('logo') || $view->menu()->exists('main')) : ?>
-        <div class="<?= $params['classes.navbar'] ?>" <?= $params['classes.sticky'] ?>>
+		<div id="bix-header" class="uk-block uk-block-default uk-hidden-small">
+			<div class="uk-container uk-container-center">
+
+				<header class="uk-flex uk-flex-space-between">
+
+					<?php if ($params['logo']): ?>
+						<a class="uk-navbar-brand" href="<?= $view->url()->get() ?>">
+							<img src="<?= $this->escape($params['logo']) ?>" alt="">
+						</a>
+					<?php endif ?>
+
+					<?php if ($view->position()->exists('header')) : ?>
+						<div>
+							<?= $view->position('header', 'position/blank.php') ?>
+						</div>
+					<?php endif ?>
+
+				</header>
+
+			</div>
+		</div>
+
+        <?php if ($view->position()->exists('offcanvas') || $view->menu()->exists('main')) : ?>
+        <div id="bix-navbar" <?= $classes['sticky'] ?>>
             <div class="uk-container uk-container-center">
 
                 <nav class="uk-navbar">
 
-                    <?php if ($params['logo-navbar']) : ?>
-                    <a class="uk-navbar-brand uk-hidden-small" href="<?= $view->url()->get() ?>">
-                        <img src="<?= $this->escape($params['logo-navbar']) ?>" alt="">
-                    </a>
-                    <?php endif ?>
-
-                    <?php if ($view->menu()->exists('main')) : ?>
-                    <div class="uk-navbar-flip uk-hidden-small">
+					<?php if ($view->menu()->exists('main')) : ?>
+                    <div class="uk-hidden-small">
                         <?= $view->menu('main', 'menu-navbar.php') ?>
                     </div>
                     <?php endif ?>
@@ -33,58 +49,89 @@
                     <a href="#offcanvas" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas></a>
                     <?php endif ?>
 
-                    <?php if ($params['logo']): ?>
-                    <a class="uk-navbar-brand uk-navbar-center uk-visible-small" href="<?= $view->url()->get() ?>">
-                        <img src="<?= $this->escape($params['logo']) ?>" alt="">
-                    </a>
-                    <?php endif ?>
+					<?php if ($params['logo_small']): ?>
+						<a class="uk-navbar-brand uk-navbar-center uk-visible-small" href="<?= $view->url()->get() ?>">
+							<img src="<?= $this->escape($params['logo_small']) ?>" alt="">
+						</a>
+					<?php endif ?>
 
-                </nav>
+				</nav>
 
             </div>
         </div>
         <?php endif ?>
 
-        <?php if ($view->position()->exists('hero')) : ?>
-        <div id="tm-hero" class="tm-hero uk-block uk-cover-background uk-flex uk-flex-middle <?= $params['classes.hero'] ?>" style="background-image: url('<?= $params['hero-image']; ?>');">
+        <?php if ($view->position()->exists('feature')) : ?>
+        <div id="bix-feature" class="uk-block uk-block-default uk-padding-remove">
             <div class="uk-container uk-container-center">
 
-                <section class="uk-grid uk-grid-match" data-uk-grid-margin>
-                    <?= $view->position('hero', 'position-grid.php') ?>
+                <section class="bix-feature">
+                    <?= $view->position('feature', 'position/tab.php') ?>
                 </section>
 
             </div>
         </div>
         <?php endif; ?>
 
-        <?php if ($view->position()->exists('top')) : ?>
-        <div id="tm-top" class="tm-top uk-block uk-block-muted">
+        <?php if ($view->position()->exists('top-1')) : ?>
+        <div id="bix-top-1" class="tm-top uk-block uk-block-muted">
             <div class="uk-container uk-container-center">
 
                 <section class="uk-grid uk-grid-match" data-uk-grid-margin>
-                    <?= $view->position('top', 'position-grid.php') ?>
+                    <?= $view->position('top-1', 'position/grid.php') ?>
                 </section>
 
             </div>
         </div>
         <?php endif; ?>
 
-        <div id="tm-main" class="tm-main uk-block uk-block-default">
+        <?php if ($view->position()->exists('top-2')) : ?>
+        <div id="bix-top-2" class="tm-top uk-block">
+            <div class="uk-container uk-container-center">
+
+                <section class="uk-grid" data-uk-grid-margin>
+                    <?= $view->position('top-2', 'position/stack.php') ?>
+                </section>
+
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <div id="bix-main" class="uk-block uk-block-default">
             <div class="uk-container uk-container-center">
 
                 <div class="uk-grid" data-uk-grid-match data-uk-grid-margin>
 
-                    <main class="<?= $view->position()->exists('sidebar') ? 'uk-width-medium-3-4' : 'uk-width-1-1'; ?>">
-                        <?= $view->render('messages') ?>
-                        <?= $params['alignment'] ? '<div class="uk-text-center">' : '' ?>
+                    <main class="<?= $classes['mainwidth'] ?>">
+
+						<?= $view->render('messages') ?>
+
+						<?php if ($view->position()->exists('content-top')) : ?>
+							<section id="bix-content-top" class="uk-grid" data-uk-grid-margin>
+								<?= $view->position('content-top', 'position/stack.php') ?>
+							</section>
+						<?php endif ?>
+
+                        <?= $view->position()->exists('content-top') ? '<div class="uk-grid-large'.($params['alignment'] ? ' uk-text-center' : '').'">' : '' ?>
+
                         <?= $view->render('content') ?>
-                        <?= $params['alignment'] ? '</div>' : '' ?>
+
+                        <?= $view->position()->exists('content-top') ? '</div>' : '' ?>
+
                     </main>
 
-                    <?php if ($view->position()->exists('sidebar')) : ?>
-                    <aside class="uk-width-medium-1-4 <?= $params['sidebar-first'] ? 'uk-flex-order-first-medium' : ''; ?>">
-                        <?= $view->position('sidebar', 'position-panel.php') ?>
+                    <?php if ($view->position()->exists('sidebar') || $view->menu()->exists('sidebar')) : ?>
+
+                    <aside class="<?= $classes['sidebarwidth'] ?>">
+						<?php if ($view->menu()->exists('sidebar')) : ?>
+							<div class="uk-panel">
+								<?= $view->menu('sidebar', ['class' => 'uk-nav uk-nav-side']) ?>
+							</div>
+						<?php endif ?>
+
+						<?= $view->position('sidebar', 'position/panel.php') ?>
                     </aside>
+
                     <?php endif ?>
 
                 </div>
@@ -92,12 +139,24 @@
             </div>
         </div>
 
-        <?php if ($view->position()->exists('bottom')) : ?>
-        <div id="tm-bottom" class="tm-bottom uk-block uk-block-muted">
+        <?php if ($view->position()->exists('bottom-1')) : ?>
+        <div id="bix-bottom-1" class="tm-bottom uk-block uk-block-default">
+            <div class="uk-container uk-container-center">
+
+                <section data-uk-margin>
+                    <?= $view->position('bottom-1', 'position/stack.php') ?>
+                </section>
+
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <?php if ($view->position()->exists('bottom-2')) : ?>
+        <div id="bix-bottom-2" class="tm-bottom uk-block uk-block-muted">
             <div class="uk-container uk-container-center">
 
                 <section class="uk-grid uk-grid-match" data-uk-grid-margin>
-                    <?= $view->position('bottom', 'position-grid.php') ?>
+                    <?= $view->position('bottom-2', 'position/grid.php') ?>
                 </section>
 
             </div>
@@ -109,10 +168,22 @@
             <div class="uk-container uk-container-center uk-text-center">
 
                 <section class="uk-grid uk-grid-match" data-uk-grid-margin>
-                    <?= $view->position('footer', 'position-grid.php') ?>
+                    <?= $view->position('footer', 'position/grid.php') ?>
                 </section>
 
-            </div>
+				<?php if ($view->menu()->exists('footer')) : ?>
+					<div class="uk-margin-large-top">
+						<?= $view->menu('footer', ['class' => 'uk-subnav uk-subnav-line uk-flex-center']) ?>
+					</div>
+				<?php endif ?>
+
+				<?php if ($copyright) : ?>
+					<div class="uk-margin-top uk-text-muted">
+						<?= $copyright ?>
+					</div>
+				<?php endif ?>
+
+			</div>
         </div>
         <?php endif; ?>
 
@@ -121,11 +192,11 @@
             <div class="uk-offcanvas-bar">
 
                 <?php if ($view->menu()->exists('offcanvas')) : ?>
-                    <?= $view->menu('offcanvas', ['class' => 'uk-nav-offcanvas']) ?>
+                    <?= $view->menu('offcanvas', ['class' => 'uk-nav uk-nav-offcanvas']) ?>
                 <?php endif ?>
 
                 <?php if ($view->position()->exists('offcanvas')) : ?>
-                    <?= $view->position('offcanvas', 'position-panel.php') ?>
+                    <?= $view->position('offcanvas', 'position/panel.php') ?>
                 <?php endif ?>
 
             </div>

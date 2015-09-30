@@ -1,9 +1,10 @@
 {
     "name": "bixie/bixblack",
+    "module": "bixie/bixblack",
     "type": "pagekit-theme",
-    "version": "0.1.0",
-    "title": "BixBlack",
-    "description": "First dark theme for Pagekit",
+    "version": "0.2.0",
+    "title": "Bixie Black",
+    "description": "Dark theme for Pagekit, based on UIkit",
     "license": "MIT",
     "authors": [
         {

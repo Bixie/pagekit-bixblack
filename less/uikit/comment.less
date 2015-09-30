@@ -24,9 +24,14 @@
 // New
 //
 
-@comment-primary-padding:                        @global-margin;
-@comment-primary-background:                     @global-default-hover-background;
+@comment-padding:                               10px;
+@comment-border:                                @global-border;
+@comment-background:                            #fafafa;
 
+@comment-primary-border:                        fade(@comment-primary-color, 30%);
+@comment-primary-background:                    #ebf7fd;
+@comment-primary-color:                         #2d7091;
+@comment-primary-text-shadow:                   @global-text-shadow;
 
 
 // Component
@@ -38,7 +43,12 @@
 // Sub-object `uk-comment-header`
 // ========================================================================
 
-.hook-comment-header() {}
+.hook-comment-header() {
+    padding: @comment-padding;
+    border: 1px solid @comment-border;
+    border-radius: @global-border-radius;
+    background: @comment-background;
+}
 
 
 // Sub-object `uk-comment-avatar`
@@ -50,7 +60,7 @@
 // Sub-object `uk-comment-title`
 // ========================================================================
 
-.hook-comment-title() { font-weight: 400; }
+.hook-comment-title() {}
 
 
 // Sub-object `uk-comment-meta`
@@ -62,19 +72,28 @@
 // Sub-object `uk-comment-body`
 // ========================================================================
 
-.hook-comment-body() {}
+.hook-comment-body() {
+    padding-left: @comment-padding;
+    padding-right: @comment-padding;
+}
 
 
 // Sub-object `uk-comment-primary`
 // ========================================================================
 
-.hook-comment-primary() {
-    padding: @comment-primary-padding;
-    background: @comment-primary-background;
-}
+.hook-comment-primary() {}
 
 
 // Miscellaneous
 // ========================================================================
 
-.hook-comment-misc() {}
+.hook-comment-misc() {
+
+    .uk-comment-primary .uk-comment-header {
+        border-color: @comment-primary-border;
+        background-color: @comment-primary-background;
+        color: @comment-primary-color;
+        text-shadow: 0 1px 0 @comment-primary-text-shadow;
+    }
+
+}

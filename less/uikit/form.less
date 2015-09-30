@@ -12,8 +12,6 @@
 @form-background:                               @global-background;
 @form-color:                                    @global-color;
 
-@form-focus-border:                             @global-primary-background;
-@form-focus-background:                         @global-background;
 @form-focus-color:                              @global-color;
 
 @form-disabled-border:                          @global-border;
@@ -33,36 +31,16 @@
 @form-small-font-size:                          round((@global-font-size * 0.85)); // 12px / 14px
 @form-large-font-size:                          round((@global-font-size * 1.14)); // 16px / 18px
 
-@form-danger-border:                            @global-danger-background;
-@form-danger-background:                        @global-background;
-@form-danger-color:                             @global-color;
-
-@form-success-border:                           @global-success-background;
-@form-success-background:                       @global-background;
-@form-success-color:                            @global-color;
-
 @form-blank-border:                             @global-border;
-
-@form-stacked-font-weight:                      normal;
-
-@form-horizontal-label-margin-top:              7px;
-@form-horizontal-controls-text-padding-top:     7px;
 
 @form-icon-font-size:                           @global-font-size;
 @form-icon-color:                               @global-muted-color;
-
-//
-// New
-//
-
-@form-stacked-font-size:                        round((@global-font-size * 0.85)); // 12px / 14px
-@form-stacked-line-height:                      round((@form-stacked-font-size *  1.46)); // 18px / 20px
 
 
 // Component
 // ========================================================================
 
-.hook-form() {}
+.hook-form() { border-radius: @global-border-radius; }
 
 // Focus state
 .hook-form-focus() {}
@@ -101,10 +79,7 @@
 // Sub-object: `uk-form-label`
 // ========================================================================
 
-.hook-form-stacked-label() {
-    font-size: @form-stacked-font-size;
-    line-height: @form-stacked-line-height;
-}
+.hook-form-stacked-label() {}
 
 .hook-form-horizontal-label() {}
 
@@ -112,11 +87,4 @@
 // Miscellaneous
 // ========================================================================
 
-.hook-form-misc() {
-
-    .uk-form-help-block {
-        color: @global-muted-color;
-        font-style: italic;
-    }
-
-}
+.hook-form-misc() {}

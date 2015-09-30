@@ -8,24 +8,18 @@
 // ========================================================================
 
 @base-body-background:                          @global-background;
-@base-body-font-family:                         "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 @base-body-font-size:                           @global-font-size;
 @base-body-line-height:                         @global-line-height;
 @base-body-color:                               @global-color;
 
 @base-link-color:                               @global-link-color;
 @base-link-hover-color:                         @global-link-hover-color;
-@base-em-color:                                 #f0615c;
-@base-ins-background:                           #ffd;
 @base-ins-color:                                @global-color;
-@base-mark-background:                          #ffd;
 @base-mark-color:                               @global-color;
 
 @base-margin-vertical:                          @global-margin;
 
-@base-heading-font-family:                      "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-@base-heading-font-weight:                      300;
-@base-heading-color:                            @global-dark-color;
+@base-heading-color:                            @global-color;
 @base-heading-margin-top:                       @global-margin-large;
 @base-h1-font-size:                             round((@global-font-size * 2.6)); // 36px / 42px
 @base-h1-line-height:                           round((@base-h1-font-size * 1.154)); // 42px / 48px
@@ -46,13 +40,12 @@
 @base-blockquote-font-size:                     round((@global-font-size * 1.14)); // 16px / 18px
 @base-blockquote-line-height:                   round((@base-blockquote-font-size * 1.36)); // 22px / 24px
 
-@base-code-color:                               #f0615c;
-@base-code-font-size:                           12px;
+@base-code-font-size:                           round((@global-font-size * 0.85)); // 12px / 14px
 
 @base-pre-background:                           #fafafa;
 @base-pre-color:                                @global-color;
-@base-pre-font-size:                            12px;
-@base-pre-line-height:                          18px;
+@base-pre-font-size:                            round((@global-font-size * 0.85)); // 12px / 14px
+@base-pre-line-height:                          round((@base-pre-font-size * 1.46)); // 18px / 20px
 
 //
 // New
@@ -66,17 +59,14 @@
 // Body
 // ========================================================================
 
-.hook-base-body() {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
+.hook-base-body() {}
 
 
 // Text-level semantics
 // ========================================================================
 
 .hook-base-code() {
-    padding: 2px 4px;
+    padding: 0 4px;
     border: 1px solid @base-code-border;
     border-radius: 3px;
     background: @base-code-background;

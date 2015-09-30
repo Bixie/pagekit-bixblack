@@ -1,6 +1,6 @@
 <?php
 
-namespace Pagekit\Bixie\Controller;
+namespace Bixie\BixBlack\Controller;
 
 use Pagekit\Application as App;
 

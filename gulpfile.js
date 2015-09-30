@@ -18,8 +18,8 @@ var gulp = require('gulp'),
 // paths of the packages for the compile-task
 var config = {
     pkg: {
-        name: 'bixblack',
-        path: 'themes/bixblack',
+        name: 'bixie/bixblack',
+        path: 'packages/bixie/theme-bixblack',
         data: 'composer.json'
     },
     ftp: {

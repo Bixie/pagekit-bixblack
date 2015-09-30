@@ -9,23 +9,19 @@
 
 @notify-z-index:                                @global-z-index + 40;
 
-@notify-message-margin-bottom:                  15px;
-@notify-message-background:                     @global-default-background;
-@notify-message-color:                          @global-color;
-@notify-message-font-size:                      16px;
-@notify-message-line-height:                    round((@notify-message-font-size * 1.37)); // 22px
+@notify-message-font-size:                      round((@global-font-size * 1.14)); // 16px / 18px
+@notify-message-line-height:                    round((@notify-message-font-size * 1.36)); // 22px / 24px
 
-@notify-message-primary-background:             @notify-message-background;
-@notify-message-primary-color:                  @global-link-color;
+//
+// New
+//
 
-@notify-message-success-background:             @notify-message-background;
-@notify-message-success-color:                  @global-success-background;
+@notify-message-border:                         @notify-message-background;
 
-@notify-message-warning-background:             @notify-message-background;
-@notify-message-warning-color:                  #ff9a2e;
-
-@notify-message-danger-background:              @notify-message-background;
-@notify-message-danger-color:                   @global-danger-background;
+@notify-message-primary-border:                 fade(@notify-message-primary-color, 30%);
+@notify-message-success-border:                 fade(@notify-message-success-color, 30%);
+@notify-message-warning-border:                 fade(@notify-message-warning-color, 30%);
+@notify-message-danger-border:                  fade(@notify-message-danger-color, 30%);
 
 
 // Component
@@ -34,17 +30,17 @@
 .hook-notify() {}
 
 .hook-notify-message() {
-    border-radius: 4px;
-    font-weight: 300;
+	border: 1px solid @notify-message-border;
+    border-radius: @global-border-radius;
 }
 
-.hook-notify-message-primary() {}
+.hook-notify-message-primary() { border-color: @notify-message-primary-border; }
 
-.hook-notify-message-success() {}
+.hook-notify-message-success() { border-color: @notify-message-success-border; }
 
-.hook-notify-message-warning() {}
+.hook-notify-message-warning() { border-color: @notify-message-warning-border; }
 
-.hook-notify-message-danger() {}
+.hook-notify-message-danger() { border-color: @notify-message-danger-border; }
 
 
 // Miscellaneous

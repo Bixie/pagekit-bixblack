@@ -13,13 +13,22 @@
 @nav-autocomplete-header-color:                       @global-muted-color;
 @nav-autocomplete-divider-border:                     @global-border;
 
+//
+// New
+//
+
+@nav-autocomplete-active-text-shadow:                 @global-contrast-text-shadow;
+
 
 // Component
 // ========================================================================
 
 .hook-nav-autocomplete() {}
 
-.hook-nav-autocomplete-active() {}
+.hook-nav-autocomplete-active() {
+	box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+    text-shadow: 0 -1px 0 @nav-autocomplete-active-text-shadow;
+}
 
 .hook-nav-autocomplete-header() {}
 

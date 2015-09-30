@@ -2,15 +2,15 @@
 
 return [
 
-	'name' => 'bixblack',
+	'name' => 'bixie/bixblack',
 
 	'type' => 'theme',
 
-	'main' => 'Pagekit\\Bixie\\BixieBlackTheme',
+	'main' => 'Bixie\\BixBlack\\BixieBlackTheme',
 
 	'autoload' => [
 
-		'Pagekit\\Bixie\\' => 'src'
+		'Bixie\\BixBlack\\' => 'src'
 
 	],
 
@@ -30,6 +30,8 @@ return [
 	'menus' => [
 
 		'main' => 'Main',
+		'sidebar' => 'Sidebar',
+		'footer' => 'Footer',
 		'offcanvas' => 'Offcanvas'
 
 	],
@@ -39,10 +41,15 @@ return [
 	 */
 	'positions' => [
 
-		'hero' => 'Hero',
-		'top' => 'Top',
+		'header' => 'Header',
+		'feature' => 'Feature',
+		'top-1' => 'Top 1',
+		'top-2' => 'Top 2',
+		'content-top' => 'Content top',
 		'sidebar' => 'Sidebar',
-		'bottom' => 'Bottom',
+		'content-bottom' => 'Content bottom',
+		'bottom-1' => 'Bottom 1',
+		'bottom-2' => 'Bottom 2',
 		'footer' => 'Footer',
 		'offcanvas' => 'Offcanvas'
 
@@ -56,10 +63,8 @@ return [
 		'style' => '',
 		'title_hide' => false,
 		'html_class' => '',
-		'fixed_menu' => false,
-		'hero-image' => '',
-		'hero-contrast' => '',
-		'navbar-transparent' => '',
+		'sidebar_position' => 'right',
+		'sidebar_width' => '1-4'
 
 	],
 
@@ -87,7 +92,9 @@ return [
 	'config' => [
 
 		'default_style' => 'default',
-		'fixed_menu' => false
+		'copyright' => '<p>Powered by Pagekit - Designed with UIkit</p>',
+		'fixed_menu' => false,
+		'logo_small' => ''
 
 	],
 
@@ -96,7 +103,7 @@ return [
 		'/api/bixie' => [
 			'name' => '@bixie/api',
 			'controller' => [
-				'Pagekit\\Bixie\\Controller\\BixieApiController',
+				'Bixie\\BixBlack\\Controller\\BixieApiController',
 			]
 		]
 
@@ -131,10 +138,14 @@ return [
 			if ($app->isAdmin()) {
 				return;
 			}
-
+			$reverse = ['1-4' => '3-4', '1-3' => '2-3', '1-2' => '1-2'];
 			$classes = [
-				'navbar' => 'tm-navbar'
+				'mainwidth' => $view->position()->exists('content-top') ? 'uk-width-medium-' . $reverse[$event['sidebar_width']]: 'uk-width-1-1',
+				'sidebarwidth' => 'uk-width-medium-' . $event['sidebar_width']
 			];
+			if ($event['sidebar_position'] == 'left') {
+				$classes['sidebarwidth'] .= ' uk-flex-order-first-medium';
+			}
 
 			$sticky = [
 				'media' => 767,
@@ -148,7 +159,9 @@ return [
 
 			$classes['sticky'] = $event['fixed_menu'] ? 'data-uk-sticky=\'' . json_encode($sticky) . '\'' : '';
 
-			$event->addParameters(['classes' => $classes]);
+			$event->addParameters([
+				'classes' => $classes
+			]);
 
 		}
 

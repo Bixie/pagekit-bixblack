@@ -1,6 +1,6 @@
 <?php
 
-namespace Pagekit\Bixie;
+namespace Bixie\BixBlack;
 
 use Pagekit\Application as App;
 use Pagekit\Module\Module;

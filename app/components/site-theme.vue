@@ -13,19 +13,39 @@
 
         <div class="uk-form-row">
             <label class="uk-form-label">{{ 'Default style' | trans }}</label>
+
             <div class="uk-form-controls">
-                <select class="uk-form-width-large" v-model="config.default_style" options="styles | themeStyles"></select>
+                <select class="uk-form-width-large" v-model="config.default_style"
+                        options="styles | themeStyles"></select>
             </div>
         </div>
 
         <div class="uk-form-row">
-            <span class="uk-form-label">{{ 'Menubar' | trans }}</span>
-            <div class="uk-form-controls uk-form-controls-text">
-                <label><input type="checkbox" value="fixed-menu" v-model="config.fixed_menu"> {{ 'Fixed menu' | trans }}</label>
+            <label class="uk-form-label">{{ 'Logo phone' | trans }}</label>
+
+            <div class="uk-form-controls uk-form-width-large">
+                <input-image source="{{@ config.logo_small }}"></input-image>
+                <p class="uk-form-help-block">{{ 'This logo will be shown in the navbar on phones.' | trans }}</p>
             </div>
         </div>
 
+        <div class="uk-form-row">
+            <span class="uk-form-label">{{ 'Menu' | trans }}</span>
 
+            <div class="uk-form-controls uk-form-controls-text">
+                <label><input type="checkbox" value="center-content" v-model="config.fixed_menu"> {{ 'Fixed Menu' |
+                    trans }}</label>
+            </div>
+        </div>
+
+        <div class="uk-form-row">
+            <span class="uk-form-label">{{ 'Copyright text' | trans }}</span>
+
+            <div class="uk-form-controls">
+                <v-editor id="form-intro" value="{{@ config.copyright }}"
+                          options="{{ {markdown : false, height: 150} }}"></v-editor>
+            </div>
+        </div>
     </div>
 
 </template>
@@ -48,7 +68,7 @@
 
         methods: {
 
-            save: function(e) {
+            save: function (e) {
                 e.preventDefault();
 
                 var config = _.omit(this.config, ['positions', 'menus', 'widget']);
