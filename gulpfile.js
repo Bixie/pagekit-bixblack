@@ -19,7 +19,7 @@ var gulp = require('gulp'),
 var config = {
     pkg: {
         name: 'bixie/bixblack',
-        path: 'packages/bixie/theme-bixblack',
+        path: 'packages/bixie/bixblack',
         data: 'composer.json'
     },
     ftp: {

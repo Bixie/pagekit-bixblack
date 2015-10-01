@@ -30,7 +30,6 @@ return [
 	'menus' => [
 
 		'main' => 'Main',
-		'sidebar' => 'Sidebar',
 		'footer' => 'Footer',
 		'offcanvas' => 'Offcanvas'
 
@@ -100,8 +99,8 @@ return [
 
 	'routes' => [
 
-		'/api/bixie' => [
-			'name' => '@bixie/api',
+		'/api/bixieblack' => [
+			'name' => '@bixieblack/api',
 			'controller' => [
 				'Bixie\\BixBlack\\Controller\\BixieApiController',
 			]
@@ -140,7 +139,7 @@ return [
 			}
 			$reverse = ['1-4' => '3-4', '1-3' => '2-3', '1-2' => '1-2'];
 			$classes = [
-				'mainwidth' => $view->position()->exists('content-top') ? 'uk-width-medium-' . $reverse[$event['sidebar_width']]: 'uk-width-1-1',
+				'mainwidth' => $view->position()->exists('sidebar') ? 'uk-width-medium-' . $reverse[$event['sidebar_width']]: 'uk-width-1-1',
 				'sidebarwidth' => 'uk-width-medium-' . $event['sidebar_width']
 			];
 			if ($event['sidebar_position'] == 'left') {

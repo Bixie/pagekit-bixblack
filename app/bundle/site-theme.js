@@ -44,8 +44,8 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(8)
-	module.exports.template = __webpack_require__(9)
+	module.exports = __webpack_require__(7)
+	module.exports.template = __webpack_require__(8)
 
 
 /***/ },
@@ -68,8 +68,7 @@
 
 /***/ },
 /* 6 */,
-/* 7 */,
-/* 8 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -108,7 +107,7 @@
 	    window.Site.components['site-theme'] = module.exports;
 
 /***/ },
-/* 9 */
+/* 8 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"uk-margin uk-flex uk-flex-space-between uk-flex-wrap\" data-uk-margin>\r\n        <div data-uk-margin>\r\n            <h2 class=\"uk-margin-remove\">{{ 'Theme' | trans }}</h2>\r\n        </div>\r\n        <div data-uk-margin>\r\n            <button class=\"uk-button uk-button-primary\" v-on=\"click: save\">{{ 'Save' | trans }}</button>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"uk-form uk-form-horizontal\">\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label class=\"uk-form-label\">{{ 'Default style' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <select class=\"uk-form-width-large\" v-model=\"config.default_style\"\r\n                        options=\"styles | themeStyles\"></select>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label class=\"uk-form-label\">{{ 'Logo phone' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls uk-form-width-large\">\r\n                <input-image source=\"{{@ config.logo_small }}\"></input-image>\r\n                <p class=\"uk-form-help-block\">{{ 'This logo will be shown in the navbar on phones.' | trans }}</p>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Menu' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <label><input type=\"checkbox\" value=\"center-content\" v-model=\"config.fixed_menu\"> {{ 'Fixed Menu' |\r\n                    trans }}</label>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Copyright text' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <v-editor id=\"form-intro\" value=\"{{@ config.copyright }}\"\r\n                          options=\"{{ {markdown : false, height: 150} }}\"></v-editor>\r\n            </div>\r\n        </div>\r\n    </div>";
