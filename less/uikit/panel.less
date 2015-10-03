@@ -13,17 +13,17 @@
 @panel-title-color:                             @global-color;
 
 @panel-box-padding:                             @global-margin;
-@panel-box-background:                          #fafafa;
+@panel-box-background:                          @global-default-background;
 @panel-box-color:                               @global-color;
 @panel-box-title-color:                         @global-color;
 @panel-box-teaser-margin:                       -(@panel-box-padding + 1);
 
-@panel-box-secondary-background:                #fff;
+@panel-box-secondary-background: #bbbbbb;
 
 @panel-hover-padding:                           @global-margin;
 @panel-hover-color:                             @global-color;
 @panel-hover-hover-color:                       @global-color;
-@panel-hover-hover-background:                  #fafafa;
+@panel-hover-hover-background:                  @global-default-hover-background;
 @panel-hover-teaser-margin:                     -(@panel-hover-padding + 1);
 
 @panel-header-title-border:                     @global-border;
@@ -38,7 +38,7 @@
 //
 
 @panel-box-border:                              @global-border;
-@panel-box-primary-border:                      fade(@panel-box-primary-color, 30%);
+@panel-box-primary-border:                      darken(@panel-box-primary-background, 30%);
 
 @panel-hover-border:                            @global-border;
 

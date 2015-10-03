@@ -1,0 +1,57 @@
+@import "../../less/theme.less";
+
+/* theme: Green */
+
+//
+// Typography
+//
+
+@global-link-color: #2E7D32; //800
+@global-link-hover-color: #1B5E20; //900
+
+//
+// Buttons, Navs & Badges
+//
+
+@global-primary-background: #43A047; //600
+
+//
+// Block
+//
+
+@block-primary-background: #C8E6C9; //100
+
+//
+// Button
+//
+
+@button-primary-hover-background: @global-link-hover-color;
+@button-primary-active-background: darken(@global-link-hover-color, 10%);
+
+//
+// Comment
+//
+
+@comment-primary-color: @global-link-color;
+@comment-primary-background: @global-primary-background;
+
+//
+// Form
+//
+
+@form-focus-border: @global-primary-background;
+@form-advanced-checked-color: @global-primary-background;
+
+//
+// Panel
+//
+
+@panel-box-primary-color: @global-link-hover-color;
+@panel-box-primary-title-color: @global-link-color;
+@panel-box-primary-background: @block-primary-background;
+
+//
+// Text
+//
+
+@text-primary-color: @global-link-color;

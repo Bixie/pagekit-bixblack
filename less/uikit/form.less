@@ -12,11 +12,22 @@
 @form-background:                               @global-background;
 @form-color:                                    @global-color;
 
+@form-focus-border:                             @global-border;
+@form-focus-background:                         @global-default-hover-background;
 @form-focus-color:                              @global-color;
 
+
 @form-disabled-border:                          @global-border;
-@form-disabled-background:                      #fafafa;
+@form-disabled-background:                      @global-default-active-background;
 @form-disabled-color:                           @global-muted-color;
+
+@form-danger-border:                            fade(@global-danger-background, 30%);
+@form-danger-background:                        fade(@global-danger-background, 20%);
+@form-danger-color:                             @global-contrast-color;
+
+@form-success-border:                           fade(@global-success-background, 30%);
+@form-success-background:                       fade(@global-success-background, 20%);
+@form-success-color:                            @global-contrast-color;
 
 @form-placeholder-color:                        @global-muted-color;
 

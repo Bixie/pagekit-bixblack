@@ -6,6 +6,14 @@
 
 // Variables
 // ========================================================================
+@alert-color:                                    @global-contrast-color;
+@alert-background:                               fade(@global-link-color, 20%);
+@alert-success-color:                            @global-contrast-color;
+@alert-success-background:                       fade(@global-success-background, 20%);
+@alert-warning-color:                            @global-contrast-color;
+@alert-warning-background:                       fade(@global-warning-background, 20%);
+@alert-danger-color:                             @global-contrast-color;
+@alert-danger-background:                        fade(@global-danger-background, 20%);
 
 @alert-margin-vertical:                         @global-margin;
 
@@ -16,9 +24,9 @@
 @alert-border:                                  fade(@alert-color, 30%);
 @alert-text-shadow:                             @global-text-shadow;
 
-@alert-success-border:                          fade(@alert-success-color, 30%);
-@alert-warning-border:                          fade(@alert-warning-color, 30%);
-@alert-danger-border:                           fade(@alert-danger-color, 30%);
+@alert-success-border:                          fade(@global-success-background, 30%);
+@alert-warning-border:                          fade(@global-warning-background, 30%);
+@alert-danger-border:                           fade(@global-danger-background, 30%);
 
 
 // Component

@@ -1,4 +1,33 @@
 @import "uikit/uikit.less";
 
+#bix-feature {
+  padding-top: @utility-margin;
+  padding-bottom: @utility-margin;
+}
+
+#bix-feature + #bix-top-1 {
+  padding-top: 0;
+}
+
+#bix-feature + #bix-main {
+  padding-top: @block-padding-vertical - @utility-margin;
+}
+
+#bix-content-top {
+  padding-bottom: @block-padding-vertical;
+}
+
+/* Phone landscape and bigger */
+@media (min-width: @breakpoint-medium) {
+
+  #bix-feature + #bix-main {
+    padding-top: @block-padding-vertical-large - @utility-margin;
+  }
+
+  #bix-content-top {
+    padding-bottom: @block-padding-vertical-large;
+  }
+
+}
 
 
