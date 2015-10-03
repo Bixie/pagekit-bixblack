@@ -17,14 +17,14 @@
 				<header class="uk-flex uk-flex-space-between">
 
 					<?php if ($params['logo']): ?>
-						<a class="uk-navbar-brand" href="<?= $view->url()->get() ?>">
+						<a class="uk-link-muted" href="<?= $view->url()->get() ?>">
 							<img src="<?= $this->escape($params['logo']) ?>" alt="">
 						</a>
 					<?php endif ?>
 
 					<?php if ($view->position()->exists('header')) : ?>
 						<div>
-							<?= $view->position('header', 'position/blank.php') ?>
+							<?= $view->position('header', 'position/panel.php') ?>
 						</div>
 					<?php endif ?>
 
@@ -62,7 +62,7 @@
         <?php endif ?>
 
         <?php if ($view->position()->exists('feature')) : ?>
-        <div id="bix-feature" class="uk-block uk-block-default uk-padding-remove">
+        <div id="bix-feature" class="uk-block uk-block-default">
             <div class="uk-container uk-container-center">
 
                 <section class="bix-feature">
@@ -74,30 +74,30 @@
         <?php endif; ?>
 
         <?php if ($view->position()->exists('top-1')) : ?>
-        <div id="bix-top-1" class="tm-top uk-block uk-block-muted">
-            <div class="uk-container uk-container-center">
-
-                <section class="uk-grid uk-grid-match" data-uk-grid-margin>
-                    <?= $view->position('top-1', 'position/grid.php') ?>
-                </section>
-
-            </div>
-        </div>
-        <?php endif; ?>
-
-        <?php if ($view->position()->exists('top-2')) : ?>
-        <div id="bix-top-2" class="tm-top uk-block">
+        <div id="bix-top-2" class="uk-block uk-block-default">
             <div class="uk-container uk-container-center">
 
                 <section class="uk-grid" data-uk-grid-margin>
-                    <?= $view->position('top-2', 'position/stack.php') ?>
+                    <?= $view->position('top-1', 'position/stack.php') ?>
                 </section>
 
             </div>
         </div>
         <?php endif; ?>
 
-        <div id="bix-main" class="uk-block uk-block-default">
+		<?php if ($view->position()->exists('top-2')) : ?>
+			<div id="bix-top-1" class="uk-block uk-block-muted">
+				<div class="uk-container uk-container-center">
+
+					<section class="uk-grid uk-grid-match" data-uk-grid-margin>
+						<?= $view->position('top-2', 'position/grid.php') ?>
+					</section>
+
+				</div>
+			</div>
+		<?php endif; ?>
+
+		<div id="bix-main" class="uk-block uk-block-default">
             <div class="uk-container uk-container-center">
 
                 <div class="uk-grid" data-uk-grid-match data-uk-grid-margin>
@@ -120,14 +120,9 @@
 
                     </main>
 
-                    <?php if ($view->position()->exists('sidebar') || $view->menu()->exists('sidebar')) : ?>
+                    <?php if ($view->position()->exists('sidebar')) : ?>
 
                     <aside class="<?= $classes['sidebarwidth'] ?>">
-						<?php if ($view->menu()->exists('sidebar')) : ?>
-							<div class="uk-panel">
-								<?= $view->menu('sidebar', ['class' => 'uk-nav uk-nav-side']) ?>
-							</div>
-						<?php endif ?>
 
 						<?= $view->position('sidebar', 'position/panel.php') ?>
                     </aside>
@@ -143,7 +138,7 @@
         <div id="bix-bottom-1" class="tm-bottom uk-block uk-block-default">
             <div class="uk-container uk-container-center">
 
-                <section data-uk-margin>
+                <section class="uk-grid" data-uk-grid-margin>
                     <?= $view->position('bottom-1', 'position/stack.php') ?>
                 </section>
 
@@ -163,17 +158,19 @@
         </div>
         <?php endif; ?>
 
-        <?php if ($view->position()->exists('footer')) : ?>
+        <?php if ($view->position()->exists('footer') || $view->menu()->exists('footer')) : ?>
         <div id="tm-footer" class="tm-footer uk-block uk-block-secondary uk-contrast">
             <div class="uk-container uk-container-center uk-text-center">
 
-                <section class="uk-grid uk-grid-match" data-uk-grid-margin>
-                    <?= $view->position('footer', 'position/grid.php') ?>
-                </section>
+				<?php if ($view->position()->exists('footer')) : ?>
+					<section class="uk-grid uk-grid-match" data-uk-grid-margin>
+						<?= $view->position('footer', 'position/grid.php') ?>
+					</section>
+				<?php endif ?>
 
 				<?php if ($view->menu()->exists('footer')) : ?>
-					<div class="uk-margin-large-top">
-						<?= $view->menu('footer', ['class' => 'uk-subnav uk-subnav-line uk-flex-center']) ?>
+					<div class="<?php ($view->position()->exists('footer') ? 'uk-margin-large-top' : '') ?>">
+						<?= $view->menu('footer', ['depth' => 1, 'class' => 'uk-subnav uk-subnav-line uk-flex-center']) ?>
 					</div>
 				<?php endif ?>
 
