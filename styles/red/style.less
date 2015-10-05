@@ -1,10 +1,54 @@
 @import "../../less/theme.less";
 
-@global-link-color: #c13023;
-@global-link-hover-color: #99290f;
+/* theme: Red */
 
-@global-primary-background: #e63c28;
+@global-link-color: #EF5350; //400
+@global-primary-background: #E53935; //600
+@global-primary-color: #C62828; //800
+@global-primary-hover-color: #B71C1C; //900
 
-@panel-box-primary-background: @global-primary-background;
-@panel-box-primary-color: @global-contrast-color;
-@panel-box-primary-title-color: @global-contrast-color;
+//
+// Typography
+//
+
+@global-link-hover-color: @global-primary-background;
+
+
+//
+// Block
+//
+
+@block-primary-background: fade(@global-primary-background, 20%);
+
+//
+// Button
+//
+
+@button-primary-hover-background: @global-primary-hover-color;
+@button-primary-active-background: darken(@global-primary-hover-color, 10%);
+
+//
+// Comment
+//
+
+@comment-primary-color: @global-primary-color;
+@comment-primary-background: @global-primary-background;
+
+//
+// Form
+//
+
+@form-focus-border: @global-primary-background;
+@form-advanced-checked-color: @global-primary-background;
+
+//
+// Panel
+//
+
+@panel-box-primary-background: @block-primary-background;
+
+//
+// Text
+//
+
+@text-primary-color: @global-link-color;

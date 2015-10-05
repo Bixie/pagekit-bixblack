@@ -3,7 +3,6 @@
 //
 // ========================================================================
 
-
 // Global variables
 // ========================================================================
 
@@ -12,13 +11,15 @@
 //
 // Text
 //
+@global-primary-color: #286981;
+@global-primary-hover-color: #00579f;
 
 @global-color:                                  #ddd;
 @global-muted-color:                            #ccc;
 @global-text-shadow:                            #3f3f3f;
 
-@global-link-color: #286981;
-@global-link-hover-color: #00579f;
+@global-link-color: @global-primary-color;
+@global-link-hover-color: @global-primary-hover-color;
 
 @global-contrast-color:                         #fff;
 @global-contrast-text-shadow:                   rgba(0,0,0,0.1);
@@ -40,6 +41,7 @@
 @global-default-active-background: #666;
 
 @global-primary-background: #1565b2;
+@global-secondary-background: #bbbbbb;
 @global-success-background: #688c39;
 @global-warning-background: #ae661e;
 @global-danger-background: #be2433;

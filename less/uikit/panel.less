@@ -18,7 +18,10 @@
 @panel-box-title-color:                         @global-color;
 @panel-box-teaser-margin:                       -(@panel-box-padding + 1);
 
-@panel-box-secondary-background: #bbbbbb;
+@panel-box-primary-color:                       @global-contrast-color;
+@panel-box-primary-title-color:                 lighten(@global-link-color, 20%);
+
+@panel-box-secondary-background:                @global-secondary-background;
 
 @panel-hover-padding:                           @global-margin;
 @panel-hover-color:                             @global-color;
@@ -69,7 +72,11 @@
 
 .hook-panel-box-primary-hover() {}
 
-.hook-panel-box-secondary() {}
+.hook-panel-box-secondary() {
+  a:not(.uk-button) {
+    color: @global-primary-color;
+  }
+}
 
 .hook-panel-box-secondary-hover() {}
 

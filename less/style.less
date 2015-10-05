@@ -1,1 +1,51 @@
 @import "theme.less";
+
+@global-link-color: #29B6F6; //400
+@global-primary-background: #039BE5; //600
+@global-primary-color: #0277BD; //800
+@global-primary-hover-color: #01579B; //900
+
+//
+// Typography
+//
+
+@global-link-hover-color: @global-primary-background;
+
+//
+// Block
+//
+
+@block-primary-background: fade(@global-primary-background, 20%);
+
+//
+// Button
+//
+
+@button-primary-hover-background: @global-primary-hover-color;
+@button-primary-active-background: darken(@global-primary-hover-color, 10%);
+
+//
+// Comment
+//
+
+@comment-primary-color: @global-primary-color;
+@comment-primary-background: @global-primary-background;
+
+//
+// Form
+//
+
+@form-focus-border: @global-primary-background;
+@form-advanced-checked-color: @global-primary-background;
+
+//
+// Panel
+//
+
+@panel-box-primary-background: @block-primary-background;
+
+//
+// Text
+//
+
+@text-primary-color: @global-link-color;

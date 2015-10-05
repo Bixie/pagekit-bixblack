@@ -2,37 +2,36 @@
 
 /* theme: Orange */
 
+@global-link-color: #FF7043; //400
+@global-primary-background: #F4511E; //600
+@global-primary-color: #D84315; //800
+@global-primary-hover-color: #BF360C; //900
+
 //
 // Typography
 //
 
-@global-link-color: #D84315; //800
-@global-link-hover-color: #BF360C; //900
+@global-link-hover-color: @global-primary-background;
 
-//
-// Buttons, Navs & Badges
-//
-
-@global-primary-background: #F4511E; //600
 
 //
 // Block
 //
 
-@block-primary-background: #FFCCBC; //100
+@block-primary-background: fade(@global-primary-background, 20%);
 
 //
 // Button
 //
 
-@button-primary-hover-background: @global-link-hover-color;
-@button-primary-active-background: darken(@global-link-hover-color, 10%);
+@button-primary-hover-background: @global-primary-hover-color;
+@button-primary-active-background: darken(@global-primary-hover-color, 10%);
 
 //
 // Comment
 //
 
-@comment-primary-color: @global-link-color;
+@comment-primary-color: @global-primary-color;
 @comment-primary-background: @global-primary-background;
 
 //
@@ -46,8 +45,6 @@
 // Panel
 //
 
-@panel-box-primary-color: @global-link-hover-color;
-@panel-box-primary-title-color: @global-link-color;
 @panel-box-primary-background: @block-primary-background;
 
 //
