@@ -2,7 +2,7 @@
     "name": "bixie/bixblack",
     "module": "bixie/bixblack",
     "type": "pagekit-theme",
-    "version": "0.8.0",
+    "version": "0.8.1",
     "title": "Bixie Black",
     "description": "Dark theme for Pagekit, based on UIkit",
     "license": "MIT",
@@ -10,7 +10,7 @@
         {
             "name": "Bixie",
             "email": "info@bixie.org",
-            "homepage": "http://theme.bixie.org"
+            "homepage": "http://bixblack.bixie.org"
         }
     ],
     "extra": {
