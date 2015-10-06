@@ -1,5 +1,8 @@
-<?php foreach ($widgets as $widget) : ?>
-<div class="uk-width-medium-1-<?= count($widgets) ?>">
+<?php foreach ($widgets as $widget) :
+	$widget = $app['theme']->checkWidget($widget);
+	if (!$widget->get('theme_show')) continue;
+	?>
+	<div class="uk-width-medium-1-<?= count($widgets) ?>">
 
     <div class="uk-panel <?= $widget->theme['panel'] ?><?= $widget->theme['alignment'] ? ' uk-text-center' : '' ?>">
 

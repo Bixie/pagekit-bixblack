@@ -24,6 +24,12 @@ class BixieBlackTheme extends Module {
 
 	}
 
+	public function checkWidget ($widget) {
+		$show = empty($widget->theme['demo_style']) || $widget->theme['demo_style'] == $this->config('default_style');
+		$widget->set('theme_show', $show);
+		return $widget;
+	}
+
 	public function getStyles () {
 		return $this->styles->getStyles();
 	}
