@@ -51,14 +51,11 @@
             priority: 90
         },
 
-        props: ['node'],
-
-        created: function () {
-            this.Bixie = this.$resource('api/bixieblack/:task');
-            this.Bixie.query({task: 'styles'}, function (data) {
-                this.$set('styles', data);
-            })
+        data: function () {
+            return window.$bixie;
         },
+
+        props: ['node'],
 
         filters: require('../lib/filters')
 
