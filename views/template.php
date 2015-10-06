@@ -23,7 +23,7 @@
 					<?php endif ?>
 
 					<?php if ($view->position()->exists('header')) : ?>
-						<div>
+						<div class="uk-flex uk-flex-wrap">
 							<?= $view->position('header', 'position/panel.php') ?>
 						</div>
 					<?php endif ?>
