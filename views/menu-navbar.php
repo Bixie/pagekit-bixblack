@@ -1,12 +1,15 @@
-<?php if ($root->getDepth() === 0) : ?>
+<?php
+if ($root->getDepth() === 0) : ?>
 <ul class="uk-navbar-nav">
 <?php endif ?>
 
-    <?php foreach ($root->getChildren() as $node) : ?>
-    <li class="<?= $node->hasChildren() ? 'uk-parent' : '' ?><?= $node->get('active') ? ' uk-active' : '' ?>" <?= ($root->getDepth() === 0 && $node->hasChildren()) ? 'data-uk-dropdown':'' ?>>
+    <?php foreach ($root->getChildren() as $node) :
+			$showDropdown = $node->hasChildren() && $params['main_menu_depth'] == 2;
+		?>
+    <li class="<?= $showDropdown ? 'uk-parent' : '' ?><?= $node->get('active') ? ' uk-active' : '' ?>" <?= ($root->getDepth() === 0 && $showDropdown) ? 'data-uk-dropdown':'' ?>>
         <a href="<?= $node->getUrl() ?>"><?= $node->title ?></a>
 
-        <?php if ($node->hasChildren()) : ?>
+        <?php if ($showDropdown) : ?>
 
             <?php if ($root->getDepth() === 0) : ?>
             <div class="uk-dropdown uk-dropdown-navbar">

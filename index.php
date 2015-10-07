@@ -93,6 +93,7 @@ return [
 		'default_style' => 'default',
 		'copyright' => '<p>Powered by Pagekit - Designed with UIkit</p>',
 		'fixed_menu' => false,
+		'main_menu_depth' => 2,
 		'logo_small' => ''
 
 	],

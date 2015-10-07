@@ -39,6 +39,16 @@
         </div>
 
         <div class="uk-form-row">
+            <label for="form-main_menu_depth" class="uk-form-label">{{ 'Main menu depth' | trans }}</label>
+            <div class="uk-form-controls">
+                <select id="form-main_menu_depth" class="uk-form-width-large" v-model="config.main_menu_depth" number>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="uk-form-row">
             <span class="uk-form-label">{{ 'Copyright text' | trans }}</span>
 
             <div class="uk-form-controls">
