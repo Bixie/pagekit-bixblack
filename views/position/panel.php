@@ -2,7 +2,7 @@
 	$widget = $app['theme']->checkWidget($widget);
 	if (!$widget->get('theme_show')) continue;
 	?>
-	<div class="uk-panel <?= $widget->theme['panel'] ?><?= $widget->theme['alignment'] ? ' uk-text-center' : '' ?>">
+	<div class="uk-panel <?= $widget->theme['panel'] . ' ' . $widget->theme['html_class'] ?><?= $widget->theme['alignment'] ? ' uk-text-center' : '' ?>">
 
     <?php if (!$widget->theme['title_hide']) : ?>
     <h3 class="<?= $widget->theme['title_size'] ?>"><?= $widget->title ?></h3>

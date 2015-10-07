@@ -16,7 +16,7 @@
 				if (!$widget->get('theme_show')) continue;
 				?>
 				<li>
-					<div class="uk-panel <?= $widget->theme['panel'] ?><?= $widget->theme['alignment'] ? ' uk-text-center' : '' ?>">
+					<div class="uk-panel <?= $widget->theme['panel'] . ' ' . $widget->theme['html_class'] ?><?= $widget->theme['alignment'] ? ' uk-text-center' : '' ?>">
 
 						<?= $widget->get('result') ?>
 
