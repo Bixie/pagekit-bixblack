@@ -104,6 +104,10 @@
 
                     <main class="<?= $classes['mainwidth'] ?>">
 
+						<?php if ($view->position()->exists('breadcrumbs')) : ?>
+							<?= $view->position('breadcrumbs', 'position/blank.php') ?>
+						<?php endif ?>
+
 						<?= $view->render('messages') ?>
 
 						<?php if ($view->position()->exists('content-top')) : ?>

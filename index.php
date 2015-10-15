@@ -45,6 +45,7 @@ return [
 		'top-1' => 'Top 1',
 		'top-2' => 'Top 2',
 		'content-top' => 'Content top',
+		'breadcrumbs' => 'Breadcrumbs',
 		'sidebar' => 'Sidebar',
 		'content-bottom' => 'Content bottom',
 		'bottom-1' => 'Bottom 1',
