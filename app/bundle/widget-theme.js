@@ -46,26 +46,138 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(9)
-	module.exports.template = __webpack_require__(10)
 
+	if (module.exports.__esModule) module.exports = module.exports.default
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(10)
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "C:\\BixieProjects\\pagekit\\pagekit\\packages\\bixie\\bixblack\\app\\components\\widget-theme.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	  }
+	})()}
 
 /***/ },
 
 /***/ 9:
 /***/ function(module, exports) {
 
+	'use strict';
+
+	// <template>
+
+	//     <div class="uk-form-horizontal">
+
+	//         <div class="uk-form-row">
+
+	//             <span class="uk-form-label">{{ 'Title' | trans }}</span>
+
+	//             <div class="uk-form-controls uk-form-controls-text">
+
+	//                 <label><input type="checkbox" value="center-content" v-model="widget.theme.title_hide"> {{ 'Hide Title' | trans }}</label>
+
+	//             </div>
+
+	//         </div>
+
+	//         <div class="uk-form-row">
+
+	//             <label for="form-theme-badge" class="uk-form-label">{{ 'HTML Class' | trans }}</label>
+
+	//             <div class="uk-form-controls">
+
+	//                 <input id="form-theme-badge" class="uk-form-width-large" type="text" v-model="widget.theme.html_class">
+
+	//             </div>
+
+	//         </div>
+
+	//         <div class="uk-form-row">
+
+	//             <label for="form-theme-panel" class="uk-form-label">{{ 'Panel Style' | trans }}</label>
+
+	//             <div class="uk-form-controls">
+
+	//                 <select id="form-theme-panel" class="uk-form-width-large" v-model="widget.theme.panel">
+
+	//                     <option value="">{{ 'None' | trans }}</option>
+
+	//                     <option value="uk-panel-box">{{ 'Box' | trans }}</option>
+
+	//                     <option value="uk-panel-box uk-panel-box-primary">{{ 'Box Primary' | trans }}</option>
+
+	//                     <option value="uk-panel-box uk-panel-box-secondary">{{ 'Box Secondary' | trans }}</option>
+
+	//                     <option value="uk-panel-header">{{ 'Header' | trans }}</option>
+
+	//                 </select>
+
+	//             </div>
+
+	//         </div>
+
+	//         <div class="uk-form-row">
+
+	//             <label for="form-theme-title-size" class="uk-form-label">{{ 'Title Size' | trans }}</label>
+
+	//             <div class="uk-form-controls">
+
+	//                 <select id="form-theme-title-size" class="uk-form-width-large" v-model="widget.theme.title_size">
+
+	//                     <option value="uk-panel-title">{{ 'Default' | trans }}</option>
+
+	//                     <option value="uk-h1 uk-margin-top-remove">{{ 'H1' | trans }}</option>
+
+	//                     <option value="uk-h2 uk-margin-top-remove">{{ 'H2' | trans }}</option>
+
+	//                     <option value="uk-h3 uk-margin-top-remove">{{ 'H3' | trans }}</option>
+
+	//                     <option value="uk-h4 uk-margin-top-remove">{{ 'H4' | trans }}</option>
+
+	//                     <option value="uk-heading-large uk-margin-top-remove">Extra Large</option>
+
+	//                 </select>
+
+	//             </div>
+
+	//         </div>
+
+	//         <div class="uk-form-row">
+
+	//             <span class="uk-form-label">{{ 'Alignment' | trans }}</span>
+
+	//             <div class="uk-form-controls uk-form-controls-text">
+
+	//                 <label><input type="checkbox" value="center-content" v-model="widget.theme.alignment"> {{ 'Center the title and content.' | trans }}</label>
+
+	//             </div>
+
+	//         </div>
+
+	//     </div>
+
+	// </template>
+
+	// <script>
+
 	module.exports = {
 
-	        section: {
-	            label: 'Appearance',
-	            priority: 90
-	        },
+	    section: {
+	        label: 'Appearance',
+	        priority: 90
+	    },
 
-	        props: ['widget', 'config']
+	    props: ['widget', 'config']
 
-	    };
+	};
 
-	    window.Widgets.components['widget-theme'] = module.exports;
+	window.Widgets.components['widget-theme'] = module.exports;
+
+	// </script>
 
 /***/ },
 
