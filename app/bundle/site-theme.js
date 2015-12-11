@@ -97,7 +97,7 @@
 
 	//         <div data-uk-margin>
 
-	//             <button class="uk-button uk-button-primary" v-on="click: save">{{ 'Save' | trans }}</button>
+	//             <button class="uk-button uk-button-primary" @click.prevent="save">{{ 'Save' | trans }}</button>
 
 	//         </div>
 
@@ -111,9 +111,11 @@
 
 	//             <div class="uk-form-controls">
 
-	//                 <select class="uk-form-width-large" v-model="config.default_style"
+	//                 <select class="uk-form-width-large" v-model="config.default_style">
 
-	//                         options="styles | themeStyles"></select>
+	//                     <option v-for="option in styles | themeStyles" :value="option.value">{{ option.text }}</option>
+
+	//                 </select>
 
 	//             </div>
 
@@ -171,9 +173,9 @@
 
 	//             <div class="uk-form-controls">
 
-	//                 <v-editor id="form-intro" value="{{@ config.copyright }}"
+	//                 <v-editor id="form-intro" :value.synv="config.copyright"
 
-	//                           options="{{ {markdown : false, height: 150} }}"></v-editor>
+	//                           :options="{markdown : false, height: 150}"></v-editor>
 
 	//             </div>
 
@@ -201,8 +203,7 @@
 
 	    methods: {
 
-	        save: function save(e) {
-	            e.preventDefault();
+	        save: function save() {
 
 	            var config = _.omit(this.config, ['positions', 'menus', 'widget']);
 
@@ -225,7 +226,7 @@
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-margin uk-flex uk-flex-space-between uk-flex-wrap\" data-uk-margin>\r\n        <div data-uk-margin>\r\n            <h2 class=\"uk-margin-remove\">{{ 'Theme' | trans }}</h2>\r\n        </div>\r\n        <div data-uk-margin>\r\n            <button class=\"uk-button uk-button-primary\" v-on=\"click: save\">{{ 'Save' | trans }}</button>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"uk-form uk-form-horizontal\">\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label class=\"uk-form-label\">{{ 'Default style' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <select class=\"uk-form-width-large\" v-model=\"config.default_style\"\r\n                        options=\"styles | themeStyles\"></select>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label class=\"uk-form-label\">{{ 'Logo phone' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls uk-form-width-large\">\r\n                <input-image source=\"{{@ config.logo_small }}\"></input-image>\r\n                <p class=\"uk-form-help-block\">{{ 'This logo will be shown in the navbar on phones.' | trans }}</p>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Menu' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <label><input type=\"checkbox\" value=\"center-content\" v-model=\"config.fixed_menu\"> {{ 'Fixed Menu' |\r\n                    trans }}</label>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label for=\"form-main_menu_depth\" class=\"uk-form-label\">{{ 'Main menu depth' | trans }}</label>\r\n            <div class=\"uk-form-controls\">\r\n                <select id=\"form-main_menu_depth\" class=\"uk-form-width-large\" v-model=\"config.main_menu_depth\" number>\r\n                    <option value=\"1\">1</option>\r\n                    <option value=\"2\">2</option>\r\n                </select>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Copyright text' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <v-editor id=\"form-intro\" value=\"{{@ config.copyright }}\"\r\n                          options=\"{{ {markdown : false, height: 150} }}\"></v-editor>\r\n            </div>\r\n        </div>\r\n    </div>";
+	module.exports = "<div class=\"uk-margin uk-flex uk-flex-space-between uk-flex-wrap\" data-uk-margin>\r\n        <div data-uk-margin>\r\n            <h2 class=\"uk-margin-remove\">{{ 'Theme' | trans }}</h2>\r\n        </div>\r\n        <div data-uk-margin>\r\n            <button class=\"uk-button uk-button-primary\" @click.prevent=\"save\">{{ 'Save' | trans }}</button>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"uk-form uk-form-horizontal\">\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label class=\"uk-form-label\">{{ 'Default style' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <select class=\"uk-form-width-large\" v-model=\"config.default_style\">\r\n                    <option v-for=\"option in styles | themeStyles\" :value=\"option.value\">{{ option.text }}</option>\r\n                </select>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label class=\"uk-form-label\">{{ 'Logo phone' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls uk-form-width-large\">\r\n                <input-image source=\"{{@ config.logo_small }}\"></input-image>\r\n                <p class=\"uk-form-help-block\">{{ 'This logo will be shown in the navbar on phones.' | trans }}</p>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Menu' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <label><input type=\"checkbox\" value=\"center-content\" v-model=\"config.fixed_menu\"> {{ 'Fixed Menu' |\r\n                    trans }}</label>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label for=\"form-main_menu_depth\" class=\"uk-form-label\">{{ 'Main menu depth' | trans }}</label>\r\n            <div class=\"uk-form-controls\">\r\n                <select id=\"form-main_menu_depth\" class=\"uk-form-width-large\" v-model=\"config.main_menu_depth\" number>\r\n                    <option value=\"1\">1</option>\r\n                    <option value=\"2\">2</option>\r\n                </select>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Copyright text' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <v-editor id=\"form-intro\" :value.synv=\"config.copyright\"\r\n                          :options=\"{markdown : false, height: 150}\"></v-editor>\r\n            </div>\r\n        </div>\r\n    </div>";
 
 /***/ }
 /******/ ]);

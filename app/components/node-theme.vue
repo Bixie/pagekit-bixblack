@@ -5,7 +5,9 @@
         <div class="uk-form-row">
             <label class="uk-form-label">{{ 'Style' | trans }}</label>
             <div class="uk-form-controls">
-                <select class="uk-form-width-large" v-model="node.theme.style" options="styles | themeStyles true"></select>
+                <select class="uk-form-width-large" v-model="node.theme.style">
+                    <option v-for="option in styles | themeStyles true" :value="option.value">{{ option.text }}</option>
+                </select>
             </div>
         </div>
 

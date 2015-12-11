@@ -5,7 +5,7 @@
             <h2 class="uk-margin-remove">{{ 'Theme' | trans }}</h2>
         </div>
         <div data-uk-margin>
-            <button class="uk-button uk-button-primary" v-on="click: save">{{ 'Save' | trans }}</button>
+            <button class="uk-button uk-button-primary" @click.prevent="save">{{ 'Save' | trans }}</button>
         </div>
     </div>
 
@@ -15,8 +15,9 @@
             <label class="uk-form-label">{{ 'Default style' | trans }}</label>
 
             <div class="uk-form-controls">
-                <select class="uk-form-width-large" v-model="config.default_style"
-                        options="styles | themeStyles"></select>
+                <select class="uk-form-width-large" v-model="config.default_style">
+                    <option v-for="option in styles | themeStyles" :value="option.value">{{ option.text }}</option>
+                </select>
             </div>
         </div>
 
@@ -52,8 +53,8 @@
             <span class="uk-form-label">{{ 'Copyright text' | trans }}</span>
 
             <div class="uk-form-controls">
-                <v-editor id="form-intro" value="{{@ config.copyright }}"
-                          options="{{ {markdown : false, height: 150} }}"></v-editor>
+                <v-editor id="form-intro" :value.synv="config.copyright"
+                          :options="{markdown : false, height: 150}"></v-editor>
             </div>
         </div>
     </div>
@@ -78,8 +79,7 @@
 
         methods: {
 
-            save: function (e) {
-                e.preventDefault();
+            save: function () {
 
                 var config = _.omit(this.config, ['positions', 'menus', 'widget']);
 
