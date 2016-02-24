@@ -83,10 +83,10 @@
 
                 var config = _.omit(this.config, ['positions', 'menus', 'widget']);
 
-                this.$http.post('admin/system/settings/config', {name: this.name, config: config}, function () {
-                    UIkit.notify(this.$trans('Settings saved.'), '');
-                }).error(function (data) {
-                    UIkit.notify(data, 'danger');
+                this.$http.post('admin/system/settings/config', {name: this.name, config: config}).then(function () {
+                    this.$notify('Settings saved');
+                }, function (res) {
+                    this.$notify(res.data, 'danger');
                 });
 
             }
