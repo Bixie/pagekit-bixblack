@@ -137,17 +137,20 @@ return [
 		/**
 		 * Custom markup calculations based on theme settings
 		 */
-		'view.layout' => function ($event, $view) use ($app) {
+		'view.init' => function ($event, $view) use ($app) {
 
 			if ($app->isAdmin()) {
 				return;
 			}
+
+			$params = $view->params;
+
 			$reverse = ['1-4' => '3-4', '1-3' => '2-3', '1-2' => '1-2'];
 			$classes = [
-				'mainwidth' => $view->position()->exists('sidebar') ? 'uk-width-medium-' . $reverse[$event['sidebar_width']]: 'uk-width-1-1',
-				'sidebarwidth' => 'uk-width-medium-' . $event['sidebar_width']
+				'mainwidth' => $view->position()->exists('sidebar') ? 'uk-width-medium-' . $reverse[$params['sidebar_width']]: 'uk-width-1-1',
+				'sidebarwidth' => 'uk-width-medium-' . $params['sidebar_width']
 			];
-			if ($event['sidebar_position'] == 'left') {
+			if ($params['sidebar_position'] == 'left') {
 				$classes['sidebarwidth'] .= ' uk-flex-order-first-medium';
 			}
 
@@ -157,15 +160,13 @@ return [
 				'animation' => 'uk-animation-slide-top'
 			];
 
-			if (empty($event['style'])) {
-				$event['style'] = $event['default_style'];
+			if (empty($params['style'])) {
+				$params['style'] = $params['default_style'];
 			}
 
-			$classes['sticky'] = $event['fixed_menu'] ? 'data-uk-sticky=\'' . json_encode($sticky) . '\'' : '';
+			$classes['sticky'] = $params['fixed_menu'] ? 'data-uk-sticky=\'' . json_encode($sticky) . '\'' : '';
 
-			$event->addParameters([
-				'classes' => $classes
-			]);
+			$params['classes'] = $classes;
 
 		}
 

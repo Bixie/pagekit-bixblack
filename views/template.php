@@ -34,7 +34,7 @@
 		</div>
 
         <?php if ($view->position()->exists('offcanvas') || $view->menu()->exists('main')) : ?>
-        <div id="bix-navbar" <?= $classes['sticky'] ?>>
+        <div id="bix-navbar" <?= $params['classes.sticky'] ?>>
             <div class="uk-container uk-container-center">
 
                 <nav class="uk-navbar">
@@ -102,7 +102,7 @@
 
                 <div class="uk-grid" data-uk-grid-match data-uk-grid-margin>
 
-                    <main class="<?= $classes['mainwidth'] ?>">
+                    <main class="<?= $params['classes.mainwidth'] ?>">
 
 						<?php if ($view->position()->exists('breadcrumbs')) : ?>
 							<?= $view->position('breadcrumbs', 'position/blank.php') ?>
@@ -126,7 +126,7 @@
 
                     <?php if ($view->position()->exists('sidebar')) : ?>
 
-                    <aside class="<?= $classes['sidebarwidth'] ?>">
+                    <aside class="<?= $params['classes.sidebarwidth'] ?>">
 
 						<?= $view->position('sidebar', 'position/panel.php') ?>
                     </aside>
