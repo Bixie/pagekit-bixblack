@@ -178,9 +178,9 @@
 					</div>
 				<?php endif ?>
 
-				<?php if ($copyright) : ?>
+				<?php if ($params['copyright']) : ?>
 					<div class="uk-margin-top uk-text-muted">
-						<?= $copyright ?>
+						<?= $params['copyright'] ?>
 					</div>
 				<?php endif ?>
 
