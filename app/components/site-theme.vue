@@ -34,8 +34,8 @@
             <span class="uk-form-label">{{ 'Menu' | trans }}</span>
 
             <div class="uk-form-controls uk-form-controls-text">
-                <label><input type="checkbox" value="center-content" v-model="config.fixed_menu"> {{ 'Fixed Menu' |
-                    trans }}</label>
+                <label><input type="checkbox" value="center-content"
+                              v-model="config.fixed_menu"> {{ 'Fixed Menu' | trans }}</label>
             </div>
         </div>
 
